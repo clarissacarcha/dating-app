@@ -2,11 +2,11 @@
 import axios from 'axios';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import multiClientMiddleware from 'redux-axios-middleware';
-import movieListReducer from './moviesListReducer';
+import pokemonListReducer from './pokemonListReducer';
 
 // Combine all reducer files and add keys.
 const appReducer = combineReducers({
-  movieListReducer
+  pokemonListReducer
 });
 
 const rootReducer = (state, action) => {

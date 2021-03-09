@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { View, ActivityIndicator} from 'react-native';
-import { getMovieList } from '../../reducers/moviesListReducer';
+import { getPokemonList } from '../../reducers/pokemonListReducer';
 import CustomButton from '../../components/CustomButton';
 import layouts from '../../assets/styles/layouts';
 import { CANCEL_ICON, HEART_ICON, STAR_ICON } from './constants';
@@ -10,7 +10,7 @@ import CustomCard from '../../components/CustomCard';
 import CustomOverlayLabel from '../../components/CustomOverylayLabel';
 import Swiper from 'react-native-deck-swiper';
 
-const Home = ({ getMovieListDispatch, getMovieListState }) => {
+const Home = ({ getPokemonListDispatch, getPokemonListState }) => {
 
   const [data, setData] = useState([])
   const useSwiper = useRef(null)
@@ -18,13 +18,13 @@ const Home = ({ getMovieListDispatch, getMovieListState }) => {
   const handleOnSwipedRight = () => useSwiper.current.swipeRight()
 
   useEffect(() => {
-    getMovieListDispatch()
+    getPokemonListDispatch()
   }, [])
 
   useEffect(() => {
-    let { results } = getMovieListState
+    let { results } = getPokemonListState
     if(results && results.length > 0){ setData(results) }
-  }, [getMovieListState])
+  }, [getPokemonListState])
 
   if(data.length === 0){ return(
     <View style={[ layouts.flexCenter, layouts.flex1 ]}>
@@ -68,12 +68,12 @@ const Home = ({ getMovieListDispatch, getMovieListState }) => {
 
 const mapStateToProps = (state) => {
   return {
-    getMovieListState: state.movieListReducer.getMovieListState,
+    getPokemonListState: state.pokemonListReducer.getPokemonListState,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getMovieListDispatch: () => dispatch(getMovieList()),
+  getPokemonListDispatch: () => dispatch(getPokemonList()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

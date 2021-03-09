@@ -1,16 +1,16 @@
 const initialState = {
-  getMovieListState: [],
+  getPokemonListState: [],
 }
 
 export default function movieListReducer(state = initialState, action) {
   switch (action.type){
-    case 'GET_MOVIE_LIST':
+    case 'GET_POKEMON_LIST':
       return { ...state,  isLoading: true };
-    case 'GET_MOVIE_LIST_SUCCESS':
-      return { ...state, isLoading: false, getMovieListState: action.payload ? action.payload.data : [] };
-    case 'GET_MOVIE_LIST_FAIL':
-      let personalError = action.error.data ? action.error.data :  action.error
-      return { ...state, isLoading: false, getMovieListState: personalError };
+    case 'GET_POKEMON_LIST_SUCCESS':
+      return { ...state, isLoading: false, getPokemonListState: action.payload ? action.payload.data : [] };
+    case 'GET_POKEMON_LIST_FAIL':
+      let error = action.error.data ? action.error.data : action.error
+      return { ...state, isLoading: false, getPokemonListState: error };
 
     case 'CLEAR_DATA':
       return initialState
@@ -20,9 +20,9 @@ export default function movieListReducer(state = initialState, action) {
   }
 }
 
-export function getMovieList() {
+export function getPokemonList() {
   return {
-    type: 'GET_MOVIE_LIST',
+    type: 'GET_POKEMON_LIST',
     payload: {
       request: {
         method: 'GET',

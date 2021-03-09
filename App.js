@@ -13,6 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { default as Home } from './screens/Home';
 import store from './reducers/store';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import layouts from './assets/styles/layouts';
 
 const ROOTSTACK = createStackNavigator();
 
@@ -32,7 +33,7 @@ export default function App(){
   return (
     <StoreProvider store={store}>
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={[ layouts.flex1 ]}>
           <RootStack />
         </SafeAreaView>
       </NavigationContainer>
